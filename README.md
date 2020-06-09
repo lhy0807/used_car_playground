@@ -1,5 +1,5 @@
 # Used Car Playground
-![NY Average Price of 2015 BMW 3 Series](ny.png "NY Average Price of 2015 BMW 3 Series")
+![NY Average Points](ny.png "NY Average Points")
 
 This is the repo for Used Car Playground project  
 
