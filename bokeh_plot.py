@@ -8,49 +8,49 @@ from bokeh.palettes import brewer
 from bokeh.plotting import figure
 
 def plot(ny):
-    # Input GeoJSON source that contains features for plotting
-    ny_source = GeoJSONDataSource(geojson = ny.to_json())
-    # Define color palettes
-    palette = brewer['OrRd'][8]
-    palette = palette[::-1] # reverse order of colors so higher values have darker colors
-    # Instantiate LinearColorMapper that linearly maps numbers in a range, into a sequence of colors.
-    color_mapper = LinearColorMapper(palette = palette, low = ny['price'].min(), high = ny['price'].max())
+        # Input GeoJSON source that contains features for plotting
+        ny_source = GeoJSONDataSource(geojson = ny.to_json())
+        # Define color palettes
+        palette = brewer['OrRd'][8]
+        palette = palette[::-1] # reverse order of colors so higher values have darker colors
+        # Instantiate LinearColorMapper that linearly maps numbers in a range, into a sequence of colors.
+        color_mapper = LinearColorMapper(palette = palette, low = ny['Points'].min(), high = ny['Points'].max())
 
 
-    # Create color bar.
-    color_bar = ColorBar(color_mapper = color_mapper, 
+        # Create color bar.
+        color_bar = ColorBar(color_mapper = color_mapper, 
                         label_standoff = 8,
                         width = 500, height = 20,
                         border_line_color = None,
                         location = (0,0), 
                         orientation = 'horizontal')
 
-    # Create figure object.
-    p = figure(title = 'Average 2015 BMW 3 Series Selling Price', 
-            plot_height = 600 ,
-            plot_width = 950, 
-            toolbar_location = 'below',
-            tools = "pan, wheel_zoom, box_zoom, reset")
-    p.xgrid.grid_line_color = None
-    p.ygrid.grid_line_color = None
-    # Add patch renderer to figure.
-    states = p.patches('xs','ys', source = ny_source,
-                    fill_color = {'field' :'price',
-                                    'transform' : color_mapper},
-                    line_color = "gray", 
-                    line_width = 0.25, 
-                    fill_alpha = 1)
-    # Create hover tool
-    p.add_tools(HoverTool(renderers = [states],
+        # Create figure object.
+        p = figure(title = 'Calculated Weighted Points', 
+                plot_height = 650 ,
+                plot_width = 950, 
+                toolbar_location = 'below',
+                tools = "pan, wheel_zoom, box_zoom, reset")
+        p.xgrid.grid_line_color = None
+        p.ygrid.grid_line_color = None
+        # Add patch renderer to figure.
+        states = p.patches('xs','ys', source = ny_source,
+                        fill_color = {'field' :'Points',
+                                        'transform' : color_mapper},
+                        line_color = "gray", 
+                        line_width = 0.25, 
+                        fill_alpha = 1)
+        # Create hover tool
+        p.add_tools(HoverTool(renderers = [states],
                         tooltips = [('PO Name','@PO_NAME'),
-                                    ('Price','@price')
-                                    ]))
+                                        ('Points','@Points')
+                                        ]))
 
-    color_bar = ColorBar(color_mapper = color_mapper, 
+        color_bar = ColorBar(color_mapper = color_mapper, 
                         label_standoff = 8,
                         width = 950, height = 20,
                         border_line_color = None,
                         location = (0,0), 
                         orientation = 'horizontal')
-    p.add_layout(color_bar, 'below')
-    show(p)
+        p.add_layout(color_bar, 'below')
+        show(p)

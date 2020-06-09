@@ -1,10 +1,12 @@
 import geopandas as gpd
 
-def generator():
+def generator(model_codes):
     usa = gpd.read_file('../zipcodes.shp')
     urls = []
+    #only focus in NY right now
     #for z in usa['ZIP_CODE']:
-    for z in usa[usa['STATE'] == 'NY']['ZIP_CODE']:
-        urls.append('https://www.cargurus.com/Cars/inventorylisting/viewDetailsFilterViewInventoryListing.action?zip={}&showNegotiable=true&sortDir=ASC&sourceContext=carGurusHomePageModel&distance=10&entitySelectingHelper.selectedEntity2=c24539&sortType=DEAL_SCORE&entitySelectingHelper.selectedEntity=c24539'.format(z))
+    for model in model_codes:
+        for z in usa[usa['STATE'] == 'NY']['ZIP_CODE']:
+            urls.append('https://www.cargurus.com/Cars/inventorylisting/viewDetailsFilterViewInventoryListing.action?zip={}&showNegotiable=true&sortDir=ASC&sourceContext=carGurusHomePageModel&distance=10&entitySelectingHelper.selectedEntity2={}&sortType=DEAL_SCORE&entitySelectingHelper.selectedEntity={}'.format(z, model, model))
 
     return urls
