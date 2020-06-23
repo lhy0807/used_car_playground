@@ -4,6 +4,7 @@ from bokeh.models import (CDSView, ColorBar, ColumnDataSource,
                           GeoJSONDataSource, HoverTool,
                           LinearColorMapper, Slider)
 from bokeh.layouts import column, row, widgetbox
+# pylint: disable=no-name-in-module
 from bokeh.palettes import brewer
 from bokeh.plotting import figure
 

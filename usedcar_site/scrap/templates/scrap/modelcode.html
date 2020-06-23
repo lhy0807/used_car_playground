@@ -1,3 +1,4 @@
+<h1>add code</h1>
 <form action="addcode/" method="GET">
     Code: <input name="code" placeholder="code"> Year: <input name="year" placeholder="year"> Make: <input name="make" placeholder="make"> Model: <input name="model" placeholder="model">
     <button type="submit">Submit</button>
@@ -11,3 +12,9 @@
     {% endfor %}
 </ul>
 {% endif %}
+
+<h1>delete code</h1>
+<form action="deletecode/" method="GET">
+    Code: <input name="code" placeholder="code">
+    <button type="submit">Delete</button>
+</form>
