@@ -21,7 +21,6 @@ class UsedCarSpider(scrapy.Spider):
     
     def __init__(self):
         models = ['c24539','c24654','c24466','c24582','c24684','c24348']
-        start_urls = generator(models)
         self.start_urls = generator(models)
         self.url_num = len(self.start_urls)
         self.counter = 0

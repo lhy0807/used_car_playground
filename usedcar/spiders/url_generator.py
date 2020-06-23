@@ -8,5 +8,5 @@ def generator(model_codes):
     for model in model_codes:
         for z in usa[usa['STATE'] == 'NY']['ZIP_CODE']:
             urls.append('https://www.cargurus.com/Cars/inventorylisting/viewDetailsFilterViewInventoryListing.action?zip={}&showNegotiable=true&sortDir=ASC&sourceContext=carGurusHomePageModel&distance=10&entitySelectingHelper.selectedEntity2={}&sortType=DEAL_SCORE&entitySelectingHelper.selectedEntity={}'.format(z, model, model))
-
+    print("All URLs Generated!")
     return urls

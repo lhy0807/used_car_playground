@@ -30,7 +30,8 @@ def plot(ny):
                 plot_height = 650 ,
                 plot_width = 950, 
                 toolbar_location = 'below',
-                tools = "pan, wheel_zoom, box_zoom, reset")
+                tools = "pan, wheel_zoom, box_zoom, reset",
+                output_backend="webgl")
         p.xgrid.grid_line_color = None
         p.ygrid.grid_line_color = None
         # Add patch renderer to figure.

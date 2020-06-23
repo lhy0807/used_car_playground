@@ -1,0 +1,37 @@
+Server: Apache/2.4.6 (CentOS) mod_jk/1.2.41
+Set-Cookie: JSESSIONID=33AEF414535758227387137AADE11A53.www01; Path=/; Secure; HttpOnly; SameSite=None
+Set-Cookie: ViewVersion=%7B%22en%22%3A%7B%22includes%22%3A%5B%22df394486-fdd7-450d-8270-96778b74d3cf%22%2C%224144f563-4611-4a70-be7a-73c03bb25762%22%2C%224546df74-4629-4ac2-97af-0b634d5a63bb%22%2C%22cf7866a3-fa53-b708-6495-37449d093986%22%5D%2C%22type%22%3A%22IN%22%7D%7D; Expires=Thu, 19-Jun-2025 14:25:34 GMT; Path=/; Secure; SameSite=None
+Set-Cookie: CarGurusUserT=rWMf-123.122.134.82.1592663134495; Expires=Thu, 19-Jun-2025 14:25:34 GMT; Path=/; Secure; SameSite=None
+Set-Cookie: CGUU=t; Expires=Sun, 20-Jun-2021 14:25:34 GMT; Path=/; Secure; SameSite=None
+Set-Cookie: MultivariateTest=%7B%22ENGLISH%22%3A%7B%221%22%3A%22-1%22%7D%7D; Expires=Thu, 19-Jun-2025 14:25:34 GMT; Path=/; Secure; SameSite=None
+Set-Cookie: NRCG=true; Path=/; Secure; SameSite=None
+Set-Cookie: preferredContactInfo=Y2l0eT1OZXcgWW9yaypwb3N0YWxDb2RlPTEwMDE0KnN0YXRlPU5ZKmNvdW50cnk9VVMqaG9tZVBvc3RhbENvZGU9MTAwMTQq; Expires=Thu, 19-Jun-2025 14:25:34 GMT; Path=/; Secure; SameSite=None
+Set-Cookie: pastListingSearches="{@s@:@USED@,@d@:10,@t@:1592625600000,@e@:@d1512@,@y1@:2015,@y2@:2015,@z@:@10014@,@l@:@en@}/"; Version=1; Max-Age=7776000; Expires=Fri, 18-Sep-2020 14:25:34 GMT; Path=/; Secure; SameSite=None
+Set-Cookie: listingsSinceLastVisit=%7B%22d1512%22%3A%7B%22lastVisitDateMs%22%3A1592663134628%2C%22dateMs%22%3A1592663134628%7D%7D; Expires=Sat, 04-Jul-2020 14:25:34 GMT; Path=/; Secure; SameSite=None
+Set-Cookie: LSW=prod-bos2-www-01;Path=/
+X-Content-Type-Options: nosniff
+X-Xss-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+Cache-Control: no-cache,no-store,must-revalidate
+Pragma: no-cache
+Expires: 0
+Last-Modified: Sat, 20 Jun 2020 14:25:34 GMT
+Content-Language: en-US
+Content-Encoding: gzip
+Content-Type: text/html;charset=UTF-8
+Accept-Ranges: bytes
+Accept-Ranges: bytes
+Accept-Ranges: bytes
+Accept-Ranges: bytes
+Age: 0
+Age: 0
+Age: 0
+Age: 0
+Via: 1.1 varnish
+Via: 1.1 varnish
+Date: Sat, 20 Jun 2020 14:25:34 GMT
+X-Served-By: cache-bos4642-BOS, cache-hnd18743-HND
+X-Cache: MISS, MISS
+X-Cache-Hits: 0, 0
+X-Timer: S1592663134.406486,VS0,VE499
+Vary: Accept-Encoding,User-Agent

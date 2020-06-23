@@ -1,0 +1,13 @@
+<form action="addcode/" method="GET">
+    Code: <input name="code" placeholder="code"> Year: <input name="year" placeholder="year"> Make: <input name="make" placeholder="make"> Model: <input name="model" placeholder="model">
+    <button type="submit">Submit</button>
+</form>
+
+
+{% if codes %}
+<ul>
+    {% for code in codes %}
+    <li>{{code.code}} . {{code.year}} . {{code.make}} . {{code.model}}</li>
+    {% endfor %}
+</ul>
+{% endif %}

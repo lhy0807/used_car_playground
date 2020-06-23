@@ -1,0 +1,37 @@
+Server: Apache/2.4.6 (CentOS) mod_jk/1.2.41
+Set-Cookie: JSESSIONID=03F7D5F68FE2774A144552AA942B1CA0.www23; Path=/; Secure; HttpOnly; SameSite=None
+Set-Cookie: ViewVersion=%7B%22en%22%3A%7B%22includes%22%3A%5B%22c874cbff-19be-4301-ba9a-f2f98f009537%22%2C%22bab9208b-b9d6-b53d-6850-f49cb2a59c44%22%2C%22cf7866a3-fa53-b708-6495-37449d093986%22%5D%2C%22exclude%22%3A%7B%224144f563-4611-4a70-be7a-73c03bb25762%22%3A25%7D%2C%22type%22%3A%22IN%22%7D%7D; Expires=Thu, 19-Jun-2025 14:25:39 GMT; Path=/; Secure; SameSite=None
+Set-Cookie: CarGurusUserT=8xjd-123.122.134.82.1592663139153; Expires=Thu, 19-Jun-2025 14:25:39 GMT; Path=/; Secure; SameSite=None
+Set-Cookie: CGUU=t; Expires=Sun, 20-Jun-2021 14:25:39 GMT; Path=/; Secure; SameSite=None
+Set-Cookie: MultivariateTest=%7B%22ENGLISH%22%3A%7B%221%22%3A%22-1%22%7D%7D; Expires=Thu, 19-Jun-2025 14:25:39 GMT; Path=/; Secure; SameSite=None
+Set-Cookie: NRCG=true; Path=/; Secure; SameSite=None
+Set-Cookie: preferredContactInfo=Y2l0eT1OZXcgWW9yaypwb3N0YWxDb2RlPTEwMDI4KnN0YXRlPU5ZKmNvdW50cnk9VVMqaG9tZVBvc3RhbENvZGU9MTAwMjgq; Expires=Thu, 19-Jun-2025 14:25:39 GMT; Path=/; Secure; SameSite=None
+Set-Cookie: pastListingSearches="{@s@:@USED@,@d@:10,@t@:1592625600000,@e@:@d1512@,@y1@:2015,@y2@:2015,@z@:@10028@,@l@:@en@}/"; Version=1; Max-Age=7776000; Expires=Fri, 18-Sep-2020 14:25:39 GMT; Path=/; Secure; SameSite=None
+Set-Cookie: listingsSinceLastVisit=%7B%22d1512%22%3A%7B%22lastVisitDateMs%22%3A1592663139357%2C%22dateMs%22%3A1592663139357%7D%7D; Expires=Sat, 04-Jul-2020 14:25:39 GMT; Path=/; Secure; SameSite=None
+Set-Cookie: LSW=prod-bos2-www-23;Path=/
+X-Content-Type-Options: nosniff
+X-Xss-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+Cache-Control: no-cache,no-store,must-revalidate
+Pragma: no-cache
+Expires: 0
+Last-Modified: Sat, 20 Jun 2020 14:25:39 GMT
+Content-Language: en-US
+Content-Encoding: gzip
+Content-Type: text/html;charset=UTF-8
+Accept-Ranges: bytes
+Accept-Ranges: bytes
+Accept-Ranges: bytes
+Accept-Ranges: bytes
+Age: 0
+Age: 0
+Age: 0
+Age: 0
+Via: 1.1 varnish
+Via: 1.1 varnish
+Date: Sat, 20 Jun 2020 14:25:39 GMT
+X-Served-By: cache-bos4624-BOS, cache-hnd18742-HND
+X-Cache: MISS, MISS
+X-Cache-Hits: 0, 0
+X-Timer: S1592663139.064959,VS0,VE553
+Vary: Accept-Encoding,User-Agent
