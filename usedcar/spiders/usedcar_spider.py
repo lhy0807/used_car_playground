@@ -8,7 +8,7 @@ import re
 class UsedCarSpider(scrapy.Spider):
     name = "usedcar"
     '''
-    Selected Models (in order):
+    Part of Selected Models (details in model_code.py):
     2015 BMW 3 Series - c24539
     2015 Toyota Camry - c24654
     2015 VW Jetta - c24466
@@ -16,11 +16,10 @@ class UsedCarSpider(scrapy.Spider):
     2015 Honda CRV - c24684
     2015 Subaru Forester - c24348
     '''
-    #models = ['c24539','c24654','c24466','c24582','c24684','c24348']
-    #start_urls = generator(models)
+
     
     def __init__(self):
-        models = ['c24539','c24654','c24466','c24582','c24684','c24348']
+        models = ['c21411','c22000','c23512','c24539','c26131','c25072','c28991','c24654','c24466','c24582','c24684','c24348']
         self.start_urls = generator(models)
         self.url_num = len(self.start_urls)
         self.counter = 0

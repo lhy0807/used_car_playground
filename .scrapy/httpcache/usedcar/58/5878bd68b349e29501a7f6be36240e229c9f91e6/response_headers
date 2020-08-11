@@ -1,20 +1,14 @@
 Server: Apache/2.4.6 (CentOS) mod_jk/1.2.41
-Set-Cookie: JSESSIONID=DC12791C82E0DB58BFC75768847F979E.www30; Path=/; Secure; HttpOnly; SameSite=None
-Set-Cookie: ViewVersion=%7B%22en%22%3A%7B%22includes%22%3A%5B%226b4ad5ee-311f-4af7-987a-bb67a870611e%22%2C%223faaa095-7d1e-b11c-529a-9ffb3a7c3ffc%22%2C%22bab9208b-b9d6-b53d-6850-f49cb2a59c44%22%2C%22bebb0a9c-b9ee-b58f-4185-8c3fc44da89d%22%5D%2C%22type%22%3A%22IN%22%7D%7D; Expires=Sun, 22-Jun-2025 13:32:25 GMT; Path=/; Secure; SameSite=None
-Set-Cookie: CarGurusUserT=tKPM-123.122.129.149.1592919145698; Expires=Sun, 22-Jun-2025 13:32:25 GMT; Path=/; Secure; SameSite=None
-Set-Cookie: CGUU=t; Expires=Wed, 23-Jun-2021 13:32:25 GMT; Path=/; Secure; SameSite=None
-Set-Cookie: MultivariateTest=%7B%22ENGLISH%22%3A%7B%221%22%3A%22-1%22%7D%7D; Expires=Sun, 22-Jun-2025 13:32:25 GMT; Path=/; Secure; SameSite=None
-Set-Cookie: preferredContactInfo=Y2l0eT1OZXcgWW9yaypwb3N0YWxDb2RlPTEwMDAxKnN0YXRlPU5ZKmNvdW50cnk9VVMqaG9tZVBvc3RhbENvZGU9MTAwMDEq; Expires=Sun, 22-Jun-2025 13:32:25 GMT; Path=/; Secure; SameSite=None
-Set-Cookie: pastListingSearches="{@s@:@USED@,@d@:10,@t@:1592884800000,@e@:@d1512@,@y1@:2015,@y2@:2015,@z@:@10001@,@l@:@en@}/"; Version=1; Max-Age=7776000; Expires=Mon, 21-Sep-2020 13:32:25 GMT; Path=/; Secure; SameSite=None
-Set-Cookie: listingsSinceLastVisit=%7B%22d1512%22%3A%7B%22lastVisitDateMs%22%3A1592919145932%2C%22dateMs%22%3A1592919145932%7D%7D; Expires=Tue, 07-Jul-2020 13:32:25 GMT; Path=/; Secure; SameSite=None
-Set-Cookie: LSW=prod-bos2-www-30;Path=/
-X-Content-Type-Options: nosniff
-X-Xss-Protection: 1; mode=block
-X-Frame-Options: SAMEORIGIN
 Cache-Control: no-cache,no-store,must-revalidate
 Pragma: no-cache
 Expires: 0
-Last-Modified: Tue, 23 Jun 2020 13:32:25 GMT
+Last-Modified: Wed, 29 Jul 2020 13:34:17 GMT
+X-Frame-Options: SAMEORIGIN
+X-Xss-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+Set-Cookie: preferredContactInfo=Y2l0eT1OZXcgWW9yaypwb3N0YWxDb2RlPTEwMDAxKnN0YXRlPU5ZKmNvdW50cnk9VVMqaG9tZVBvc3RhbENvZGU9MTAwMDEq; Expires=Mon, 28-Jul-2025 13:34:17 GMT; Path=/; Secure; SameSite=None
+Set-Cookie: pastListingSearches="{@s@:@USED@,@d@:10,@t@:1595995200000,@e@:@d1512@,@y1@:2015,@y2@:2015,@z@:@10001@,@l@:@en@}/"; Version=1; Max-Age=7776000; Expires=Tue, 27-Oct-2020 13:34:17 GMT; Path=/; Secure; SameSite=None
+Set-Cookie: listingsSinceLastVisit=%7B%22d1512%22%3A%7B%22lastVisitDateMs%22%3A1596028200031%2C%22dateMs%22%3A1596029657728%7D%7D; Expires=Wed, 12-Aug-2020 13:34:17 GMT; Path=/; Secure; SameSite=None
 Content-Language: en-US
 Content-Encoding: gzip
 Content-Type: text/html;charset=UTF-8
@@ -28,9 +22,9 @@ Age: 0
 Age: 0
 Via: 1.1 varnish
 Via: 1.1 varnish
-Date: Tue, 23 Jun 2020 13:32:26 GMT
-X-Served-By: cache-bos4636-BOS, cache-tyo19944-TYO
+Date: Wed, 29 Jul 2020 13:34:17 GMT
+X-Served-By: cache-bos4630-BOS, cache-hnd18730-HND
 X-Cache: MISS, MISS
 X-Cache-Hits: 0, 0
-X-Timer: S1592919146.606824,VS0,VE641
+X-Timer: S1596029657.254088,VS0,VE708
 Vary: Accept-Encoding,User-Agent
