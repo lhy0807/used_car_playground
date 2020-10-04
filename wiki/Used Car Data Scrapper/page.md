@@ -8,6 +8,17 @@ Other operating systems may also work, but those have not been tested yet.
 
 # Installation for Scrapy
 
+The following tutorial is a condensed version of Scrapy [official documentation](https://docs.scrapy.org/en/latest/intro/install.html)
+
+## Installing Scrapy using conda
+
+`conda install -c conda-forge scrapy`
+
+## Installing Scrapy using pip
+
+`pip install Scrapy`
+
+
 # Installation for MongoDB
 
 The following tutorial is a condensed version of MongoDB [official documentation](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/).
@@ -43,7 +54,15 @@ Create the list file /etc/apt/sources.list.d/mongodb-org-4.4.list for your versi
 
 ## Run MongoDB
 
+`sudo systemctl start mongod`
+
+or
+
 `sudo service mongod start`
+
+You can optionally ensure that MongoDB will start following a system reboot by issuing the following command:
+
+`sudo systemctl enable mongod`
 
 ## Verify that you can use MongoDB
 
