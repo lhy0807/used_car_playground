@@ -67,3 +67,21 @@ You can optionally ensure that MongoDB will start following a system reboot by i
 ## Verify that you can use MongoDB
 
 `mongo`
+
+# Setup MongoDB for Used Car Data Scrapper
+
+## Create MongoDB database for used car data
+
+We want to create a database called "usedcar". Execute following command in MongoDB CLI.
+
+`>use usedcar`
+
+Use the following command to check if you successfully created the database
+
+`>db`
+
+`usedcar`
+
+Create a Collection
+
+`>db.createCollection("cargurus")`
