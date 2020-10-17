@@ -10,16 +10,16 @@ Other operating systems may also work, but those have not been tested yet.
 
 The following tutorial is a condensed version of Scrapy [official documentation](https://docs.scrapy.org/en/latest/intro/install.html)
 
-## Installing Scrapy using conda
+## Option #1 Installing Scrapy using conda
 
 `conda install -c conda-forge scrapy`
 
-## Installing Scrapy using pip
+## Option #2 Installing Scrapy using pip
 
 `pip install Scrapy`
 
 
-# Installation for MongoDB
+# Installation for MongoDB on local machine (If you need one)
 
 The following tutorial is a condensed version of MongoDB [official documentation](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/).
 
@@ -85,3 +85,23 @@ Use the following command to check if you successfully created the database
 Create a Collection
 
 `>db.createCollection("cargurus")`
+
+## Pass in MongoDB login credential
+
+Navigate to setting.py under usedcar directory. Find defined variable, it should be something like
+
+`MONGO_URI = atlas`
+
+change atlas to your MongoDB connection URI, such as 
+
+`'mongodb://localhost:27017'`
+
+## Run the scrapper
+
+Your can run the scrapper now!
+
+Type the following command
+
+`scrapy crawl usedcar`
+
+Data would be feed into your MongoDB
