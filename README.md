@@ -7,7 +7,8 @@ Used Car Playground project is a research project related to used car data
 
 Map Data is obtained from [ArcGIS, shared by ESRI](https://www.arcgis.com/home/item.html?id=8d2012a2016e484dafaac0451f9aea24)
 
-To run the scrapy spyder in usedcar folder:
+To run the scrapy spyder in usedcar folder, please read [the wiki page](https://github.com/lhy0807/used_car_playground/wiki/Used-Car-Data-Scrapper) and make sure you have followed the instructions before entering
+
 ```bash
 scrapy crawl usedcar
 ```
