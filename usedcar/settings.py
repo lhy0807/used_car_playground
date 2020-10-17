@@ -9,6 +9,8 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
+from .atlas_db import atlas
+
 BOT_NAME = 'usedcar'
 
 SPIDER_MODULES = ['usedcar.spiders']
@@ -70,7 +72,7 @@ DEFAULT_REQUEST_HEADERS = {
 ITEM_PIPELINES = {
    'usedcar.pipelines.UsedcarPipeline': 300,
 }
-MONGO_URI = "mongodb://127.0.0.1:27017"
+MONGO_URI = atlas
 MONGO_DATABASE = "usedcar"
 
 # Enable and configure the AutoThrottle extension (disabled by default)
