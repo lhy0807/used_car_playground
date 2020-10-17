@@ -9,6 +9,10 @@ import scrapy
 
 
 class UsedcarItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
+    text = scrapy.Field()
+    year = scrapy.Field()
+    model = scrapy.Field()
+    zipcode = scrapy.Field()
+    price = scrapy.Field()
+    mileage = scrapy.Field()
     pass

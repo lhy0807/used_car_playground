@@ -3,6 +3,7 @@ from .model_code import model_code
 from .url_generator import generator
 import time
 import re
+from ..items import UsedcarItem
 
 
 class UsedCarSpider(scrapy.Spider):
@@ -72,11 +73,12 @@ class UsedCarSpider(scrapy.Spider):
             #parse model
             model = response.url.split("selectedEntity=")[1]
 
-            #year
-            yield {
-                'text': heading.css('span::text')[0].get(),
-                'model': model,
-                'zip': zip_code,
-                'price': price,
-                'mileage': mileage
-            }
+            usedcar = UsedcarItem()
+            usedcar['text'] = heading.css('span::text')[0].get()
+            usedcar['year'] = year
+            usedcar['model'] = model
+            usedcar['zipcode'] = zip_code
+            usedcar['price'] = price
+            usedcar['mileage'] = mileage
+            
+            yield usedcar
