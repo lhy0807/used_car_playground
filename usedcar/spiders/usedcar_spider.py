@@ -44,7 +44,7 @@ class UsedCarSpider(scrapy.Spider):
         self.log('Saved file %s' % filename)'''
 
         #read year, make, model from model code
-        [year, make, model] = model_code(code)
+        [year, _, _] = model_code(code)
 
         
         for heading in response.css('h4'):
