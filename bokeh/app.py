@@ -36,7 +36,7 @@ ny.insert(3,'Quantity',np.NaN)
 #then put into dataframe
 avg_price = {}
 counter = {}
-
+print("initialize...")
 #initialize
 for _,car in data.iterrows():
     zip_code = car['zipcode']
@@ -58,7 +58,7 @@ for i in avg_price:
 
 #make a copy of counter as quantity
 quantity = counter.copy()
-        
+print("start calculating points and quantity...")        
 #normalize values for each model
 max_values = {}
 min_values = {}
@@ -124,6 +124,7 @@ for i in avg_points:
 
 for i in quantity:
     ny.at[i, 'Quantity'] = quantity_sum[i]
+print("finish calculating points and quantity")        
 
 from bokeh.io import show, output_notebook
 from bokeh.models import (CDSView, ColorBar, ColumnDataSource,
