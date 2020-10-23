@@ -29,7 +29,7 @@ from bokeh.plotting import figure
 print("loading geojson file...")
 with open('geojson.json') as json_file:
     data = json.load(json_file)
-    ny_source = GeoJSONDataSource(geojson = json_file)
+    ny_source = GeoJSONDataSource(geojson = data)
 print("finish loading geojson file...")
 
 # Define color palettes
