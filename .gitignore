@@ -9,3 +9,5 @@ zipcodes.shx
 .vscode/
 .ipynb_checkpoints
 .ipynb_checkpoints/Used Car Playground-checkpoint.ipynb
+atlas_db.py
+__pycache__/
