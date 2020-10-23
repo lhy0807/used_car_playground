@@ -30,6 +30,7 @@ print("loading geojson file...")
 with open('geojson.json') as json_file:
     data = json.load(json_file)
     ny_source = GeoJSONDataSource(geojson = data)
+    ny = pd.read_json(data)
 print("finish loading geojson file...")
 
 # Define color palettes
