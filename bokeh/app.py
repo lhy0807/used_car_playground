@@ -27,10 +27,8 @@ from bokeh.palettes import brewer
 from bokeh.plotting import figure
 
 print("loading geojson file...")
-with open('geojson.json') as json_file:
-    data = json.load(json_file)
-    ny_source = GeoJSONDataSource(geojson = data)
-    ny = pd.read_json(data)
+ny = gpd.read_file("ny.geojson")
+ny_source = GeoJSONDataSource(geojson = ny.to_json())
 print("finish loading geojson file...")
 
 # Define color palettes

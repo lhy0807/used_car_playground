@@ -126,14 +126,4 @@ for i in quantity:
     ny.at[i, 'Quantity'] = quantity_sum[i]
 print("finish calculating points and quantity")        
 
-from bokeh.io import show, output_notebook
-from bokeh.models import (CDSView, ColorBar, ColumnDataSource,
-                          CustomJS, CustomJSFilter, 
-                          GeoJSONDataSource, HoverTool,
-                          LinearColorMapper, Slider)
-from bokeh.layouts import column, row, widgetbox
-from bokeh.palettes import brewer
-from bokeh.plotting import figure
-
-with open('geojson.json', 'w') as f:
-    json.dump(ny.to_json(), f)
+ny.to_file("ny.geojson", driver='GeoJSON')
