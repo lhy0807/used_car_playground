@@ -1,7 +1,7 @@
 from random import random
 
 from bokeh.layouts import column
-from bokeh.models import Button
+from bokeh.models import Button, Select
 from bokeh.palettes import RdYlBu3
 from bokeh.plotting import figure, curdoc
 
@@ -27,7 +27,8 @@ from bokeh.palettes import brewer
 from bokeh.plotting import figure
 
 print("loading geojson file...")
-ny = gpd.read_file("bokehapp/ny.geojson")
+ny = gpd.read_file("bokehapp/geojson/ny.geojson")
+ny = ny.set_index('ZIP_CODE')
 ny_source = GeoJSONDataSource(geojson = ny.to_json())
 print("finish loading geojson file...")
 
@@ -35,7 +36,7 @@ print("finish loading geojson file...")
 palette = brewer['OrRd'][8]
 palette = palette[::-1] # reverse order of colors so higher values have darker colors
 # Instantiate LinearColorMapper that linearly maps numbers in a range, into a sequence of colors.
-color_mapper = LinearColorMapper(palette = palette, low = ny['Points'].min(), high = ny['Points'].max())
+color_mapper = LinearColorMapper(palette = palette, low = 0, high = 1)
 
 
 # Create color bar.
@@ -52,7 +53,8 @@ p = figure(name="bokeh_jinja_figure",
            plot_height = 650 ,
            plot_width = 950, 
            toolbar_location = 'below',
-           tools = "pan, wheel_zoom, box_zoom, reset")
+           tools = "pan, wheel_zoom, box_zoom, reset",
+           output_backend="webgl")
 p.xgrid.grid_line_color = None
 p.ygrid.grid_line_color = None
 # Add patch renderer to figure.
@@ -76,14 +78,31 @@ color_bar = ColorBar(color_mapper = color_mapper,
                      orientation = 'horizontal')
 p.add_layout(color_bar, 'below')
 
+print("finish setting figure")
 # create a callback that will add a number in a random location
-def callback():
-    pass
+def callback(attr, old, new):
+  global ny
+  print("changing data source from {} to {}".format(old, new))
+  file_name = "bokehapp/geojson/{}.json".format(new)
+  with open(file_name, 'r') as f:
+    global ny
+    data = json.load(f)
+    avg_points = data[0]
+    quantity = data[1]
+    for i in avg_points:
+      ny.at[i, 'Points'] = avg_points[i]
 
-# add a button widget and configure with the call back
-button = Button(label="Press Me")
-button.on_click(callback)
+    for i in quantity:
+      ny.at[i, 'Quantity'] = quantity[i]
+
+    states.data_source = GeoJSONDataSource(geojson = ny.to_json())
+    curdoc().remove_root(p)
+    curdoc().add_root(p)
+  print("finish changing data source")
+
+select = Select(name="select", title="Option:", value="c21411", options=["c21411","c22000","c23512"])
+select.on_change("value", callback)
 
 # put the button and plot in a layout and add to the document
-#curdoc().add_root(column(button, p))
+curdoc().add_root(select)
 curdoc().add_root(p)

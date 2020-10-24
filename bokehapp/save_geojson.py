@@ -19,111 +19,81 @@ print("loading zipcode file...")
 usa = gpd.read_file('../zipcodes.shp')
 usa = usa.set_index('ZIP_CODE')
 ny = usa[usa['STATE'] == 'NY']
+ny.insert(3,'Quantity',0.0)
+ny.insert(3,'Points',0.0)
+ny.to_file("geojson/ny.geojson", driver='GeoJSON')
 plt.rcParams['figure.figsize'] = [20, 10]
 
 print("finish loading zipcode file")
-print("loading data from MongoDB...")
+
 client = pymongo.MongoClient(atlas)
 db = client["usedcar"]
 usedcar = db.cargurus
-data = pd.DataFrame(list(usedcar.find()),dtype=str)
-print("finish loading data from MongoDB")
 
-ny.insert(3,'Points',np.NaN)
-ny.insert(3,'Quantity',np.NaN)
+car_models = db.modelcode.find()
+codes = []
+for model in car_models:
+    codes.append(model['code'])
 
-#first collect data and calculate avg price
-#then put into dataframe
-avg_price = {}
-counter = {}
-print("initialize...")
-#initialize
-for _,car in data.iterrows():
-    zip_code = car['zipcode']
-    avg_price[zip_code] = {}
-    counter[zip_code] = {}
-    
-for _,car in data.iterrows():
-    zip_code = car['zipcode']
-    avg_price[zip_code][car['model']] = 0
-    counter[zip_code][car['model']] = 0
+for code in codes:
+    print("loading data from MongoDB...", code)
+    data = pd.DataFrame(list(usedcar.find({"model":code})),dtype=str)
+    print("finish loading data from MongoDB: ", code)
 
-for _,car in data.iterrows():
-    avg_price[car['zipcode']][car['model']] += int(car['price'].replace(',', ''))
-    counter[car['zipcode']][car['model']] += 1
+    #first collect data and calculate avg price
+    #then put into dataframe
+    avg_price = {}
+    counter = {}
+    print("initialize...")
+    #initialize
+    for _,car in data.iterrows():
+        zip_code = car['zipcode']
+        avg_price[zip_code] = 0
+        counter[zip_code] = 0
 
-for i in avg_price:
-    for j in avg_price[i]:
-        avg_price[i][j] /= counter[i][j]
+    for _,car in data.iterrows():
+        avg_price[car['zipcode']] += int(car['price'].replace(',', ''))
+        counter[car['zipcode']] += 1
 
-#make a copy of counter as quantity
-quantity = counter.copy()
-print("start calculating points and quantity...")        
-#normalize values for each model
-max_values = {}
-min_values = {}
+    for i in avg_price:
+        avg_price[i] /= counter[i]
 
-max_q = {}
-min_q = {}
-#init
-for i in avg_price:
-    for j in avg_price[i]:
-        max_values[j] = 0
-        min_values[j] = 99999
+    #make a copy of counter as quantity
+    quantity = counter.copy()
+    print("start calculating points and quantity...")        
+    #normalize values for each model
+    max_values = 0
+    min_values = 99999
 
-for i in quantity:
-    for j in quantity[i]:
-        max_q[j] = 0
-        min_q[j] = 99999
+    max_q = 0
+    min_q = 99999
 
-for i in avg_price:
-    for j in avg_price[i]:
-        price = avg_price[i][j]
-        max_values[j] = max(max_values[j], price)
+    for i in avg_price:
+        price = avg_price[i]
+        max_values = max(max_values, price)
         #skip 0 (not exist)
         if price == 0:
             continue
-        min_values[j] = min(min_values[j], price)
-        
-for i in quantity:
-    for j in quantity[i]:
-        q = quantity[i][j]
-        max_q[j] = max(max_q[j], q)
-        min_q[j] = min(min_q[j], q)
+        min_values = min(min_values, price)
+            
+    for i in quantity:
+        q = quantity[i]
+        max_q = max(max_q, q)
+        min_q = min(min_q, q)
 
-for i in avg_price:
-    for j in avg_price[i]:
-        if avg_price[i][j] == 0:
+    #calculate average points
+    avg_points = {}
+    for i in avg_price:
+        avg_points[i] = 0
+
+    for i in avg_price:
+        if avg_price[i] == 0:
             continue
-        avg_price[i][j] = (avg_price[i][j] - min_values[j])/(max_values[j] - min_values[j])
+        avg_points[i] = (avg_price[i] - min_values)/(max_values - min_values)
+    print("finish calculating points and quantity")        
 
-#calculate average points
-avg_points = {}
-for i in avg_price:
-    avg_points[i] = 0
+    file_name = "geojson/" + code + ".json"
+    with open(file_name, 'w') as f:
+        json.dump([avg_points, quantity], f)
 
-for i in avg_price:
-    counter = 0
-    for j in avg_price[i]:
-        if avg_price[i][j] == 0:
-            continue
-        counter += 1
-        avg_points[i] += avg_price[i][j]
-    avg_points[i] /= counter
-    
-#calculate sum of quantity
-quantity_sum = {}
-for i in quantity:
-    quantity_sum[i] = 0
-for i in quantity:
-    for j in quantity[i]:
-        quantity_sum[i] += quantity[i][j]
-
-for i in avg_points:
-    ny.at[i, 'Points'] = avg_points[i]
-
-for i in quantity:
-    ny.at[i, 'Quantity'] = quantity_sum[i]
-print("finish calculating points and quantity")        
-
-ny.to_file("ny.geojson", driver='GeoJSON')
+    print("finish saving " + file_name)
