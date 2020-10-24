@@ -17,3 +17,8 @@ To visualize the data, run the following in root directory:
 ```bash
 jupyter notebook "Used Car Playground.ipynb"
 ```
+
+To start bokeh application
+```bash
+chmod +x run_bokehapp.sh
+./run_bokehapp.sh
