@@ -27,7 +27,7 @@ from bokeh.palettes import brewer
 from bokeh.plotting import figure
 
 print("loading geojson file...")
-ny = gpd.read_file("ny.geojson")
+ny = gpd.read_file("bokehapp/ny.geojson")
 ny_source = GeoJSONDataSource(geojson = ny.to_json())
 print("finish loading geojson file...")
 
@@ -47,7 +47,8 @@ color_bar = ColorBar(color_mapper = color_mapper,
                      orientation = 'horizontal')
 
 # Create figure object.
-p = figure(title = 'Calculated Weighted Points', 
+p = figure(name="bokeh_jinja_figure",
+           title = 'Calculated Weighted Points', 
            plot_height = 650 ,
            plot_width = 950, 
            toolbar_location = 'below',
@@ -84,4 +85,5 @@ button = Button(label="Press Me")
 button.on_click(callback)
 
 # put the button and plot in a layout and add to the document
-curdoc().add_root(column(button, p))
+#curdoc().add_root(column(button, p))
+curdoc().add_root(p)
