@@ -1,0 +1,1 @@
+bokeh serve bokehapp --port 5100 --allow-websocket-origin=usedcar.lhy.xyz --disable-index-redirect
