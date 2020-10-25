@@ -23,9 +23,9 @@ print("finish loading geojson file...")
 app = Flask(__name__)
 
 @app.route("/")
-def index():
+def index(df = ny):
   fig, ax = plt.subplots(1, 1)
-  ny.plot(column="Points", missing_kwds={'color': 'lightgrey'}, ax=ax, legend=True)
+  df.plot(column="Points", missing_kwds={'color': 'lightgrey'}, ax=ax, legend=True)
   buf = BytesIO()
   fig.savefig(buf, format="png")
   data = base64.b64encode(buf.getbuffer()).decode("ascii")
@@ -34,18 +34,18 @@ def index():
 @app.route("/model", methods=['POST'])
 def model():
   code = request.form['code']
-  global ny
+  df = ny.copy()
   file_name = "geojson/{}.json".format(code)
   with open(file_name, 'r') as f:
     data = json.load(f)
     avg_points = data[0]
     quantity = data[1]
     for i in avg_points:
-      ny.at[i, 'Points'] = avg_points[i]
+      df.at[i, 'Points'] = avg_points[i]
 
     for i in quantity:
-      ny.at[i, 'Quantity'] = quantity[i]
-  return redirect(url_for('index'))
+      df.at[i, 'Quantity'] = quantity[i]
+  return index(df=df)
 
 if __name__ == "__main__":
   app.run(host="0.0.0.0",port="5100")
