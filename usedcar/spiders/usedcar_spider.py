@@ -5,8 +5,7 @@ import re
 from ..items import UsedcarItem
 from atlas_db import atlas
 import pymongo
-
-
+import random
 
 class UsedCarSpider(scrapy.Spider):
     name = "usedcar"
@@ -29,6 +28,7 @@ class UsedCarSpider(scrapy.Spider):
         for code in codes:
             models.append(code['code'])
         self.start_urls = generator(models)
+        random.shuffle(self.start_urls)
         self.url_num = len(self.start_urls)
         self.counter = 0
         self.init_time = time.time()
