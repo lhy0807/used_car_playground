@@ -3,7 +3,7 @@ from .url_generator import generator
 import time
 import re
 from ..items import UsedcarItem
-from atlas_db import atlas
+from .atlas_db import atlas
 import pymongo
 
 

@@ -1,7 +1,7 @@
 import geopandas as gpd
 
 def generator(model_codes):
-    usa = gpd.read_file('../zipcodes.shp')
+    usa = gpd.read_file('../../zipcodes.shp')
     urls = []
     #only focus in NY right now
     #for z in usa['ZIP_CODE']:
