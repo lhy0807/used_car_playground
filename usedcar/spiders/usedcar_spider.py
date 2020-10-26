@@ -1,9 +1,11 @@
 import scrapy
-from .model_code import model_code
 from .url_generator import generator
 import time
 import re
 from ..items import UsedcarItem
+from atlas_db import atlas
+import pymongo
+
 
 
 class UsedCarSpider(scrapy.Spider):
@@ -20,7 +22,12 @@ class UsedCarSpider(scrapy.Spider):
 
     
     def __init__(self):
-        models = ['c21411','c22000','c23512','c24539','c26131','c25072','c28991','c24654','c24466','c24582','c24684','c24348']
+        self.client = pymongo.MongoClient(atlas)
+        self.db = self.client["usedcar"]
+        codes = list(self.db.modelcode.find({},{"code":1}))
+        models = []
+        for code in codes:
+            models.append(code['code'])
         self.start_urls = generator(models)
         self.url_num = len(self.start_urls)
         self.counter = 0
@@ -44,7 +51,7 @@ class UsedCarSpider(scrapy.Spider):
         self.log('Saved file %s' % filename)'''
 
         #read year, make, model from model code
-        [year, _, _] = model_code(code)
+        year = list(self.db.modelcode.find({"code":code}))[0]['year']
 
         
         for heading in response.css('h4'):
