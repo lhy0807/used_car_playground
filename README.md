@@ -18,7 +18,16 @@ To visualize the data, run the following in root directory:
 jupyter notebook "Used Car Playground.ipynb"
 ```
 
-To start bokeh application
+~~To start bokeh application~~
 ```bash
 chmod +x run_bokehapp.sh
 ./run_bokehapp.sh
+```
+
+To run Flask webapp, follow [the wiki instructions](https://github.com/lhy0807/used_car_playground/wiki/Flask)
+
+`pip install Flask`
+
+`pip install pymongo`
+
+`pip install geopandas`

@@ -1,10 +1,5 @@
 from random import random
 
-from bokeh.layouts import column
-from bokeh.models import Button
-from bokeh.palettes import RdYlBu3
-from bokeh.plotting import figure, curdoc
-
 import geopandas as gpd
 from shapely.geometry import Point, Polygon
 import matplotlib.pyplot as plt
