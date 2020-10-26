@@ -53,3 +53,16 @@ p {
 	right: 0;
 }
 
+.geoplot {
+	width: 100%;
+	height: auto;
+}
+
+.geoplot img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 100%;
+	height: auto; 
+}
+

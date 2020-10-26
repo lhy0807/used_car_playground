@@ -14,7 +14,8 @@
                   height: 150px;" />
     </h2>
     <div class="menu">
-        <a href="index.html">Home</a>
+        <!-- call the page using Flask url_for(), try -->
+        <a href="{{ url_for('template',filename='index.html') }}">Home</a>
         <a href="index.html">Visualization</a>
     </div>
 
@@ -45,18 +46,35 @@
         </select>
         </form>
     </ul> -->
-    <form method="POST" action="/model" name="codeform" onchange="this.submit()">
-        <label for="code">这是车型：</label>
-        <select name="code">
-    <option value="none" selected disabled hidden>Select an option</option>
-      <option value="c21411">BMW</option>
-      <option value="c22000">Toyota</option>
-      <option value="c23512">Volkswagen</option>
-    </select>
-    </form>
-    <div>
+    <p> 
+        <form method="POST" action="/model" name="codeform" onchange="this.submit()">
+            <label for="code">这是车型：</label>
+            <select name="code">
+
+                <!-- The first option is what shows in the box with no selection -->
+                <option value="none" selected disabled hidden>Select a car model</option>
+                <!-- valid selections are below -->
+                <option value="c21411">BMW</option>
+                <option value="c22000">Toyota</option>
+                <option value="c23512">Volkswagen</option>
+
+            </select>
+        </form>
+
+
+        <!-- attempt to make clickable button for submitting form -->
+        <!-- TODO! -->
+        <button onclick="">
+            submit(?)
+        </button>
+
+    </p>
+
+    <!-- render map plot -->
+    <div class="geoplot">
         <img src='data:image/png;base64,{{ fig }}' />
     </div>
+
     <div class="footer">&copy; Copyright 2020 Used Car Playground</div>
 </body>
 
