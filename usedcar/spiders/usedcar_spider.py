@@ -27,7 +27,9 @@ class UsedCarSpider(scrapy.Spider):
         models = []
         for code in codes:
             models.append(code['code'])
+        del codes
         self.start_urls = generator(models)
+        del models
         random.shuffle(self.start_urls)
         self.url_num = len(self.start_urls)
         self.counter = 0
