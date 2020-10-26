@@ -64,7 +64,7 @@ class CodeBot():
             for model in self.codes[make].keys():
                 for year in self.codes[make][model].keys():
                     code = self.codes[make][model][year]
-                    self.db.modelcode.insert({"year":year, "make":make, "model":model, "code":code})
+                    self.db.modelcode.insert_one({"year":year, "make":make, "model":model, "code":code})
 
 
 if  __name__ == "__main__":
