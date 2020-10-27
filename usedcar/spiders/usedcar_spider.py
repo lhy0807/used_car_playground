@@ -23,7 +23,7 @@ class UsedCarSpider(scrapy.Spider):
     def __init__(self):
         self.client = pymongo.MongoClient(atlas)
         self.db = self.client["usedcar"]
-        codes = list(self.db.modelcode.find({"make":{"$in": [ "Audi", "BMW","Mercedes-Benz"] }},{"code":1})) 
+        codes = list(self.db.modelcode.find({"make":{"$in": [ "Toyoto", "Honda","Subaru"] }},{"code":1})) 
         models = []
         for code in codes:
             models.append(code['code'])
