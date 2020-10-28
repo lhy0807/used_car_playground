@@ -19,8 +19,34 @@ print("loading geojson file...")
 ny = gpd.read_file("geojson/ny.geojson")
 ny = ny.set_index('ZIP_CODE')
 print("finish loading geojson file...")
+print("connecting to mongodb...")
+client = pymongo.MongoClient(atlas)
+db = client["usedcar"]
+usedcar = db.cargurus
+modelcode = db.modelcode
+print("mongodb connected!")
 
 app = Flask(__name__)
+
+def model_num():
+  print("get model number")
+  return len(usedcar.distinct("model"))
+
+def model_table():
+  print("get models")
+  return list(modelcode.find({"code":{"$in":usedcar.distinct("model")}}))
+
+def make_pie():
+#pie chart for each car make
+  make = modelcode.find({"code":{"$in":usedcar.distinct("model")} }).distinct("make")
+  num = []
+  for i in make:
+    num.append(usedcar.find({"model":{"$in":modelcode.find({"make":i},{"code":1}).distinct("code") }}).count())
+  #porpotion
+  porp = []
+  for i in num:
+    porp.append(float(np.round((i/sum(num)*100), 2)))
+  return [make, porp]
 
 @app.route("/")
 def index(df = ny):
@@ -29,7 +55,8 @@ def index(df = ny):
   buf = BytesIO()
   fig.savefig(buf, format="png")
   data = base64.b64encode(buf.getbuffer()).decode("ascii")
-  return render_template('index.html', fig=data)
+  return render_template('index.html', fig=data, model_num=model_num(), model_table=model_table(),
+   pie_name=json.dumps(make_pie()[0]), pie_porp=json.dumps(make_pie()[1]), pie_name_no_json=make_pie()[0] )
 
 @app.route("/model", methods=['POST'])
 def model():
