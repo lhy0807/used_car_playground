@@ -23,7 +23,8 @@
             $.ajax({
                 url: "/ajax/map",
                 success: function(result) {
-                    $("#map").attr("src", "data:image/png;base64," + result)
+                    document.getElementById("loader").style.display = "none";
+                    $("#map").attr("src", "data:image/png;base64," + result);
                 }
             })
         }
@@ -39,6 +40,7 @@
 
     <!-- Custom add-ons stylesheet -->
     <link href="{{ url_for('static',filename='css/custom.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='css/loader-1.css') }}" rel="stylesheet">
 
 </head>
 
@@ -426,7 +428,7 @@
                                     </select>
                                     </form>
                                     <div class="text-center">
-                                        <!-- <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" src="data:image/png;base64,{{ fig }}" /> -->
+                                        <div id="loader"></div>
                                         <img id="map" class="img-fluid px-3 px-sm-4 mt-3 mb-4" src="" />
                                     </div>
                                 </div>
