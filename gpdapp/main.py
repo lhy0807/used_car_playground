@@ -85,7 +85,7 @@ def model():
 @app.route("/ajax/map")
 def ajax(df = ny):
   code = request.cookies.get("map_code")
-  if code != "":
+  if code != "" and code is not None:
     df = ny.copy()
     file_name = "geojson/{}.json".format(code)
     with open(file_name, 'r') as f:
