@@ -224,7 +224,7 @@
                                         </tfoot>
                                         <tbody>
                                             {% for model in model_table %}
-                                            <tr>
+                                            <tr onclick="document.getElementsByName('code')[0].value='{{ model.code }}'; document.getElementsByName('codeform')[0].submit();">
                                                 <td>{{ model.code }}</td>
                                                 <td>{{ model.year }}</td>
                                                 <td>{{ model.make }}</td>
@@ -418,18 +418,12 @@
                                     <h6 class="m-0 font-weight-bold text-primary">Map Test</h6>
                                 </div>
                                 <div class="card-body">
-                                    <form method="POST" action="/model" name="codeform" onchange="this.submit()">
-                                        <label for="code">这是车型：</label>
-                                        <select name="code" class="custom-select">
-                                    <option value="none" selected disabled hidden>Select an option</option>
-                                      <option value="c21411">BMW</option>
-                                      <option value="c22000">Toyota</option>
-                                      <option value="c23512">Volkswagen</option>
-                                    </select>
+                                    <form method="POST" action="/model" name="codeform">
+                                        <input name="code" hidden>
                                     </form>
                                     <div class="text-center">
                                         <div id="loader"></div>
-                                        <img id="map" class="img-fluid px-3 px-sm-4 mt-3 mb-4" src="" />
+                                        <img id="map" class="img-fluid px-3 px-sm-4 mt-3 mb-4" src="" style="width: 100%;" />
                                     </div>
                                 </div>
                             </div>

@@ -9,6 +9,7 @@ import numpy as np
 
 from atlas_db import atlas
 import pymongo
+from tqdm import tqdm
 
 print("loading zipcode file...")
 usa = gpd.read_file('../zipcodes.shp')
@@ -26,21 +27,15 @@ client = pymongo.MongoClient(atlas)
 db = client["usedcar"]
 usedcar = db.cargurus
 
-car_models = db.modelcode.find()
-codes = []
-for model in car_models:
-    codes.append(model['code'])
+codes = usedcar.distinct("model")
 
-for code in codes:
-    print("loading data from MongoDB...", code)
+for code in tqdm(codes):
     data = pd.DataFrame(list(usedcar.find({"model":code})),dtype=str)
-    print("finish loading data from MongoDB: ", code)
 
     #first collect data and calculate avg price
     #then put into dataframe
     avg_price = {}
     counter = {}
-    print("initialize...")
     #initialize
     for _,car in data.iterrows():
         zip_code = car['zipcode']
@@ -56,7 +51,6 @@ for code in codes:
 
     #make a copy of counter as quantity
     quantity = counter.copy()
-    print("start calculating points and quantity...")        
     #normalize values for each model
     max_values = 0
     min_values = 99999
@@ -85,11 +79,10 @@ for code in codes:
     for i in avg_price:
         if avg_price[i] == 0:
             continue
+        if max_values - min_values == 0:
+            continue
         avg_points[i] = (avg_price[i] - min_values)/(max_values - min_values)
-    print("finish calculating points and quantity")        
 
     file_name = "geojson/" + code + ".json"
     with open(file_name, 'w') as f:
         json.dump([avg_points, quantity], f)
-
-    print("finish saving " + file_name)
