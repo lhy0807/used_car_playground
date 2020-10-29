@@ -29,7 +29,7 @@
             })
         }
     </script>
-    <title>SB Admin 2 - Dashboard</title>
+    <title>Used Car Database Playtool - Dashboard</title>
 
     <!-- Custom fonts for this template -->
     <link href="{{ url_for('static',filename='vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -64,7 +64,7 @@
                         <div class="sidebar-brand-icon rotate-n-15">
                             <i class="fas fa-laugh-wink"></i>
                         </div>
-                        <div class="sidebar-brand-text mx-3">SB Admin</div>
+                        <div class="sidebar-brand-text mx-3">Used Car Database</div>
                     </a>
                     <!-- Topbar Search -->
                     <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
@@ -195,50 +195,56 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Begin Page Content -->
-                    <div class="container-fluid">
 
-                        <!-- DataTales Example -->
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Models in database</h6>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                        <thead>
-                                            <tr>
-                                                <th>Code</th>
-                                                <th>Year</th>
-                                                <th>Make</th>
-                                                <th>Model</th>
-                                            </tr>
-                                        </thead>
-                                        <tfoot>
-                                            <tr>
-                                                <th>Code</th>
-                                                <th>Year</th>
-                                                <th>Make</th>
-                                                <th>Model</th>
-                                            </tr>
-                                        </tfoot>
-                                        <tbody>
-                                            {% for model in model_table %}
-                                            <tr onclick="document.getElementsByName('code')[0].value='{{ model.code }}'; document.getElementsByName('codeform')[0].submit();">
-                                                <td>{{ model.code }}</td>
-                                                <td>{{ model.year }}</td>
-                                                <td>{{ model.make }}</td>
-                                                <td>{{ model.model }}</td>
-                                            </tr>
-                                            {% endfor %}
-                                        </tbody>
-                                    </table>
+
+                    <!-- Content Row -->
+                    <div class="row">
+
+                        <div class="col-xl-12 col-lg-12">
+
+                            <!-- DataTales Example -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Models in database</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Code</th>
+                                                    <th>Year</th>
+                                                    <th>Make</th>
+                                                    <th>Model</th>
+                                                </tr>
+                                            </thead>
+                                            <tfoot>
+                                                <tr>
+                                                    <th>Code</th>
+                                                    <th>Year</th>
+                                                    <th>Make</th>
+                                                    <th>Model</th>
+                                                </tr>
+                                            </tfoot>
+                                            <tbody>
+                                                {% for model in model_table %}
+                                                <tr onclick="document.getElementsByName('code')[0].value='{{ model.code }}'; document.getElementsByName('codeform')[0].submit();">
+                                                    <td>{{ model.code }}</td>
+                                                    <td>{{ model.year }}</td>
+                                                    <td>{{ model.make }}</td>
+                                                    <td>{{ model.model }}</td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                     <!-- /.container-fluid -->
+
+
                     <!-- Content Row -->
 
                     <div class="row">
@@ -297,8 +303,8 @@
                                     <div class="mt-4 text-center small" id="pie-labels">
                                         {% for make in pie_name_no_json %}
                                         <span class="mr-2" data-loop="{{ loop.index }}">
-                      <i class="fas fa-circle"></i> {{ make }}
-                    </span> {% endfor %}
+                                          <i class="fas fa-circle"></i> {{ make }}
+                                        </span> {% endfor %}
                                     </div>
                                 </div>
                             </div>
@@ -434,9 +440,6 @@
                                     <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
                                 </div>
                                 <div class="card-body">
-                                    <div class="text-center">
-                                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="img/undraw_posting_photo.svg" alt="">
-                                    </div>
                                     <p>Add some quality, svg illustrations to your project courtesy of <a target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a constantly updated collection of beautiful svg images that you can use completely
                                         free and without attribution!</p>
                                     <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on unDraw &rarr;</a>
