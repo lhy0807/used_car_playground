@@ -52,6 +52,12 @@ def make_pie():
 def index(df = ny):
   fig, ax = plt.subplots(1, 1)
   df.plot(column="Points", missing_kwds={'color': 'lightgrey'}, ax=ax, legend=True)
+
+  # adding title to the plot
+  # TODO: get selected form input and put in plot
+
+  ax.set_title("United States Used Car Data by _type_")
+
   buf = BytesIO()
   fig.savefig(buf, format="png")
   data = base64.b64encode(buf.getbuffer()).decode("ascii")
