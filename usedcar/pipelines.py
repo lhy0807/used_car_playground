@@ -30,5 +30,8 @@ class UsedcarPipeline:
         self.client.close()
 
     def process_item(self, item, spider):
-        self.db[self.collection_name].insert(dict(item))
+        try:
+            self.db[self.collection_name].insert_one(dict(item))
+        except pymongo.errors.DuplicateKeyError:
+            pass
         return item

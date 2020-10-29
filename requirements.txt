@@ -39,7 +39,7 @@ cloudpickle @ file:///tmp/build/80754af9/cloudpickle_1598884132938/work
 clyent==1.2.2
 colorama==0.4.3
 comtypes==1.1.7
-conda==4.8.5
+conda==4.9.0
 conda-build==3.20.3
 conda-package-handling==1.7.0
 conda-verify==3.4.2
@@ -211,7 +211,9 @@ scikit-image==0.16.2
 scikit-learn @ file:///C:/ci/scikit-learn_1598376983131/work
 scipy @ file:///C:/ci/scipy_1597686737426/work
 Scrapy==2.1.0
+Scrapy-UserAgents==0.0.1
 seaborn @ file:///tmp/build/80754af9/seaborn_1600553570093/work
+selenium @ file:///C:/ci/selenium_1594408106746/work
 Send2Trash==1.5.0
 service-identity==18.1.0
 Shapely==1.7.0

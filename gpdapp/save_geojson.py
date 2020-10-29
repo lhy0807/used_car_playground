@@ -19,7 +19,6 @@ ny.insert(3,'Points',np.nan)
 ny.loc[10001,'Points'] = 1
 ny.loc[10001,'Quantity'] = 1
 ny.to_file("geojson/ny.geojson", driver='GeoJSON')
-plt.rcParams['figure.figsize'] = [20, 10]
 
 print("finish loading zipcode file")
 
