@@ -46,6 +46,8 @@ def make_pie_fn():
   make = modelcode.find({"code":{"$in":usedcar.distinct("model")} }).distinct("make")
   num = []
   for i in make:
+    # try fixing warning, replace .count() to count_document()
+    # num.append(usedcar.count_document({"model":{"$in":modelcode.find({"make":i},{"code":1}).distinct("code") }}))
     num.append(usedcar.find({"model":{"$in":modelcode.find({"make":i},{"code":1}).distinct("code") }}).count())
   #porpotion
   porp = []
@@ -64,19 +66,21 @@ def make_line_fn():
   make = modelcode.find({"code":{"$in":usedcar.distinct("model")} }).distinct("make")
   year = modelcode.distinct("year")
 
-  total_in_year = dict()
+  total_num = []
 
   for m in make:
-    each_make = dict()
+    num_each = []
     for y in year:
+      # try fixing warning, replace .count() to count_document()
+      # total = usedcar.count_document({"model":{"$in":modelcode.find({"make":m},{"year":y}).distinct("code")}})
       total = usedcar.find({"model":{"$in":modelcode.find({"make":m},{"year":y}).distinct("code")}}).count()
-      each_make.update( {y : total} )
+      num_each.append(total)
 
-    total_in_year.update( {m : each_make} )
+    total_num.append(num_each)
 
   # print(total_in_year)
 
-  return total_in_year
+  return [year, total_num]
 
 
 #init
@@ -100,9 +104,12 @@ def index(df = ny):
   model_table = model_table_thread.result()
   pie_name = make_pie_thread.result()[0]
   pie_porp = make_pie_thread.result()[1]
+  line_year = make_line_thread.result()[0]
+  line_data = make_line_thread.result()[1]
 
   return render_template('index.html', model_num=model_num, model_table=model_table,
-   pie_name=json.dumps(pie_name), pie_porp=json.dumps(pie_porp), pie_name_no_json=pie_name )
+   pie_name=json.dumps(pie_name), pie_porp=json.dumps(pie_porp), pie_name_no_json=pie_name,
+   line_year_no_json=line_year, line_data=json.dumps(line_data) )
 
 @app.route("/model", methods=['POST'])
 def model():
