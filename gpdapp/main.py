@@ -53,6 +53,32 @@ def make_pie_fn():
     porp.append(float(np.round((i/sum(num)*100), 2)))
   return [make, porp]
 
+# for line chart, create _attr_ vs year
+# options: 
+#   avgerage price vs year for specific model/makes
+
+def make_line_fn():
+  print("get line chart data")
+
+
+  make = modelcode.find({"code":{"$in":usedcar.distinct("model")} }).distinct("make")
+  year = modelcode.distinct("year")
+
+  total_in_year = dict()
+
+  for m in make:
+    each_make = dict()
+    for y in year:
+      total = usedcar.find({"model":{"$in":modelcode.find({"make":m},{"year":y}).distinct("code")}}).count()
+      each_make.update( {y : total} )
+
+    total_in_year.update( {m : each_make} )
+
+  # print(total_in_year)
+
+  return total_in_year
+
+
 #init
 model_num = 0
 model_table = list()
@@ -63,6 +89,9 @@ with ThreadPoolExecutor() as executor:
   model_num_thread = executor.submit(model_num_fn)
   model_table_thread = executor.submit(model_table_fn)
   make_pie_thread = executor.submit(make_pie_fn)
+
+  # test line chat data
+  make_line_thread = executor.submit(make_line_fn)
 
 @app.route("/")
 def index(df = ny):
