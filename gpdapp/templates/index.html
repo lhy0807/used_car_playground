@@ -72,8 +72,8 @@
                             <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="button">
-                  <i class="fas fa-search fa-sm"></i>
-                </button>
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
                             </div>
                         </div>
                     </form>
@@ -93,8 +93,8 @@
                                         <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="button">
-                        <i class="fas fa-search fa-sm"></i>
-                      </button>
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
                                         </div>
                                     </div>
                                 </form>
@@ -245,11 +245,55 @@
                     <!-- /.container-fluid -->
 
 
+
+
                     <!-- Content Row -->
 
                     <div class="row">
                         <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7">
+                        <div class="col-xl-7 col-lg-6">
+
+                            <!-- put map right below the datatable selection -->
+
+                            <!-- Map Test -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header">
+                                    <h6 class="m-0 font-weight-bold text-primary"> Map Test </h6>
+                                </div>
+                                <div class="card-body">
+                                    <form method="POST" action="/model" name="codeform">
+                                        <input name="code" hidden>
+                                    </form>
+                                    <div class="text-center">
+                                        <div id="loader"></div>
+                                        <img id="map" class="img-fluid px-3 px-sm-4 mt-3 mb-4" src="" style="width: auto; max-height: 720px" />
+                                        <!-- <img id="map" class="img-fluid px-3 px-sm-4 mt-3 mb-4" /> -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- put map right below the datatable selection -->
+                        </div>
+
+
+                        <div class="col-xl-5 col-lg-6">
+                            <div class="card shadow mb-4">
+                                <div class="card-header">
+                                    <h6 class="m-0 font-weight-bold text-primary"> Map Use Instruction </h6>
+                                </div>
+                                <div class="card-body">
+                                    <p>Click the model above, see its corresponding geographic visualization in the U.S. </p>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-xl-8 col-lg-7"> 
+
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -274,6 +318,7 @@
                                     </div>
                                 </div>
                             </div>
+
                         </div>
 
                         <!-- Pie Chart -->
@@ -344,6 +389,7 @@
                                         <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </div>
+
                             </div>
 
                             <!-- Color System -->
@@ -417,22 +463,6 @@
                         </div>
 
                         <div class="col-lg-6 mb-4">
-
-                            <!-- Approach -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Map Test</h6>
-                                </div>
-                                <div class="card-body">
-                                    <form method="POST" action="/model" name="codeform">
-                                        <input name="code" hidden>
-                                    </form>
-                                    <div class="text-center">
-                                        <div id="loader"></div>
-                                        <img id="map" class="img-fluid px-3 px-sm-4 mt-3 mb-4" src="" style="width: 100%;" />
-                                    </div>
-                                </div>
-                            </div>
 
                             <!-- Illustrations -->
                             <div class="card shadow mb-4">
