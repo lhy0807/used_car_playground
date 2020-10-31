@@ -109,6 +109,8 @@ def ajax(df = ny):
   buf = BytesIO()
   fig.savefig(buf, format="png", dpi=1200)
   data = base64.b64encode(buf.getbuffer()).decode("ascii")
+  #close figure
+  plt.close(fig)
   return data
 
 if __name__ == "__main__":
