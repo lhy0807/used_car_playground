@@ -101,13 +101,13 @@ def ajax(df = ny):
   fig, ax = plt.subplots(1, 1)
   df.plot(column="Points", missing_kwds={'color': 'lightgrey'}, ax=ax, legend=True)
 
-  # adding title to the plot
-  # TODO: get selected form input and put in plot
-
-  ax.set_title("New York State Used Car Data by _type_")
-
+  if code != "" and code is not None:
+    info = modelcode.find({"code":code})[0]
+    ax.set_title("New York State {} {} {}".format(info['year'],info['make'],info['model']))
+  else:
+    ax.set_title("New York State Map")
   buf = BytesIO()
-  fig.savefig(buf, format="png")
+  fig.savefig(buf, format="png", dpi=1200)
   data = base64.b64encode(buf.getbuffer()).decode("ascii")
   return data
 
