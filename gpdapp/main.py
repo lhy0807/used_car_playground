@@ -90,10 +90,10 @@ def model():
 def ajax(df = ny):
   #TODO:
   #Modify the algo here
+  df = ny.copy()
   codes = request.cookies.get("map_code")
   if codes != "" and codes is not None:
     codes = json.loads(codes)
-    df = ny.copy()
     avg_points = {}
     quantity = {}
     for code in codes:
@@ -114,35 +114,35 @@ def ajax(df = ny):
           else:
             quantity[i] = data[1][i]
 
-  #calculate avg of avg_points and quantity
-  max_points = 0
-  min_points = 9
-  max_quantity = 0
-  min_quantity = 9
-  for i in avg_points:
-    avg_points[i] = avg_points[i] / len(codes)
-    if avg_points[i] > max_points:
-      max_points = avg_points[i]
-    if avg_points[i] < min_points:
-      min_points = avg_points[i]
+    #calculate avg of avg_points and quantity
+    max_points = 0
+    min_points = 9
+    max_quantity = 0
+    min_quantity = 9
+    for i in avg_points:
+      avg_points[i] = avg_points[i] / len(codes)
+      if avg_points[i] > max_points:
+        max_points = avg_points[i]
+      if avg_points[i] < min_points:
+        min_points = avg_points[i]
 
-  for i in quantity:
-    quantity[i] = quantity[i] / len(codes)
-    if quantity[i] > max_quantity:
-      max_quantity = quantity[i]
-    if quantity[i] < min_quantity:
-      min_quantity = quantity[i]
-  #normalization again
-  for i in avg_points:
-    avg_points[i] = (avg_points[i]-min_points)/(max_points-min_points)
-  for i in quantity:
-    quantity[i] = (quantity[i]-min_quantity)/(max_quantity-min_quantity)
+    for i in quantity:
+      quantity[i] = quantity[i] / len(codes)
+      if quantity[i] > max_quantity:
+        max_quantity = quantity[i]
+      if quantity[i] < min_quantity:
+        min_quantity = quantity[i]
+    #normalization again
+    for i in avg_points:
+      avg_points[i] = (avg_points[i]-min_points)/(max_points-min_points)
+    for i in quantity:
+      quantity[i] = (quantity[i]-min_quantity)/(max_quantity-min_quantity)
 
-  for i in avg_points:
-    df.at[i, 'Points'] = avg_points[i]
+    for i in avg_points:
+      df.at[i, 'Points'] = avg_points[i]
 
-  for i in quantity:
-    df.at[i, 'Quantity'] = quantity[i]
+    for i in quantity:
+      df.at[i, 'Quantity'] = quantity[i]
 
   fig, ax = plt.subplots(1, 1)
   df.plot(column="Points", missing_kwds={'color': 'lightgrey'}, ax=ax, legend=True)
