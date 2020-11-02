@@ -29,6 +29,15 @@
             })
         }
     </script>
+    <style>
+        .dataTables_wrapper .dt-buttons {
+            float: right;
+        }
+        
+        .dataTables_wrapper .dataTables_filter {
+            float: left;
+        }
+    </style>
     <title>SB Admin 2 - Dashboard</title>
 
     <!-- Custom fonts for this template -->
@@ -41,6 +50,10 @@
     <!-- Custom add-ons stylesheet -->
     <link href="{{ url_for('static',filename='css/custom.css') }}" rel="stylesheet">
     <link href="{{ url_for('static',filename='css/loader-1.css') }}" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.5/css/buttons.bootstrap4.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.3.1/css/select.bootstrap4.min.css" />
+
 
 </head>
 
@@ -197,7 +210,9 @@
                     </div>
                     <!-- Begin Page Content -->
                     <div class="container-fluid">
-
+                        <form method="POST" action="/model" name="codeform">
+                            <input name="code" value="" hidden>
+                        </form>
                         <!-- DataTales Example -->
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
@@ -205,7 +220,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <table class="table table-bordered display" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
                                                 <th>Code</th>
@@ -224,7 +239,7 @@
                                         </tfoot>
                                         <tbody>
                                             {% for model in model_table %}
-                                            <tr onclick="document.getElementsByName('code')[0].value='{{ model.code }}'; document.getElementsByName('codeform')[0].submit();">
+                                            <tr>
                                                 <td>{{ model.code }}</td>
                                                 <td>{{ model.year }}</td>
                                                 <td>{{ model.make }}</td>
@@ -418,9 +433,6 @@
                                     <h6 class="m-0 font-weight-bold text-primary">Map Test</h6>
                                 </div>
                                 <div class="card-body">
-                                    <form method="POST" action="/model" name="codeform">
-                                        <input name="code" hidden>
-                                    </form>
                                     <div class="text-center">
                                         <div id="loader"></div>
                                         <img id="map" class="img-fluid px-3 px-sm-4 mt-3 mb-4" src="" style="width: 100%;" />
@@ -513,6 +525,9 @@
     <!-- Page level plugins -->
     <script src="{{ url_for('static',filename='vendor/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ url_for('static',filename='vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.bootstrap4.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
 
     <!-- Page level custom scripts -->
     <script src="{{ url_for('static',filename='js/demo/datatables-demo.js') }}"></script>
