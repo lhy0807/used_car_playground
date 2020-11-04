@@ -27,35 +27,13 @@ function number_format(number, decimals, dec_point, thousands_sep) {
   return s.join(dec);
 }
 
-var line_data_json = [];
-
-// for (var make in line_data) {
-//   if (line_data.hasOwnProperty(make)) {
-//     var each = {
-//       labels: make,
-//       data: line_data[make],
-//     }
-//     line_data_json.push(each)
-//   }
-// }
-
-for (var num_each in line_data) {
-  var each = {
-    var each = {
-      labels: make,
-      data: line_data[make],
-    }
-    line_data_json.push(each)
-  }
-}
-
 // Area Chart Example
 var ctx = document.getElementById("myAreaChart");
 var myLineChart = new Chart(ctx, {
   type: 'line',
   data: {
-    // labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-    labels: line_year_no_json,
+    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    // labels: line_year,
     datasets: [{
       label: "Earnings",
       lineTension: 0.3,
@@ -69,8 +47,8 @@ var myLineChart = new Chart(ctx, {
       pointHoverBorderColor: "rgba(78, 115, 223, 1)",
       pointHitRadius: 10,
       pointBorderWidth: 2,
-      // data: [0, 10000, 5000, 15000, 10000, 20000, 15000, 25000, 20000, 30000, 25000, 40000],
-      data: line_data,
+      data: [500, 10000, 5000, 15000, 10000, 20000, 15000, 25000, 20000, 30000, 25000, 10000],
+      // data: line_data,
     }],
   },
   options: {

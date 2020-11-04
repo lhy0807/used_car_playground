@@ -25,14 +25,12 @@ var myPieChart = new Chart(ctx, {
         labels: pie_name,
         datasets: [{
             data: pie_porp,
-            // backgroundColor: bgColor,
-            // hoverBackgroundColor: "rgba(255,255,255,1)",
-            // hoverBorderColor: "rgba(0, 0, 0, 1)",
-            // hoverBorderWidth: 3
+            backgroundColor: bgColor,
+            // hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+            hoverBorderColor: "rgba(234, 236, 244, 1)",
         }],
     },
     options: {
-        responsive: true,
         maintainAspectRatio: false,
         tooltips: {
             backgroundColor: "rgb(255,255,255)",

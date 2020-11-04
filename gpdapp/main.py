@@ -109,7 +109,7 @@ def index(df = ny):
 
   return render_template('index.html', model_num=model_num, model_table=model_table,
    pie_name=json.dumps(pie_name), pie_porp=json.dumps(pie_porp), pie_name_no_json=pie_name,
-   line_year_no_json=line_year, line_data=json.dumps(line_data) )
+   line_year=json.dumps(line_year), line_data=json.dumps(line_data), line_year_no_json=line_year )
 
 @app.route("/model", methods=['POST'])
 def model():
@@ -146,6 +146,7 @@ def ajax(df = ny):
   fig.savefig(buf, format="png")
   data = base64.b64encode(buf.getbuffer()).decode("ascii")
   return data
+  # return f"<img src='data:image/png;base64,{data}'/>"
 
 if __name__ == "__main__":
   app.run(host="0.0.0.0",port="5100")
