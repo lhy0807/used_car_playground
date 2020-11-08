@@ -24,10 +24,14 @@ class UsedcarPipeline:
     def open_spider(self, spider):
         self.client = pymongo.MongoClient(self.mongo_uri)
         self.db = self.client[self.mongo_db]
+        self.db[self.collection_name].create_index([("year",pymongo.ASCENDING),("model",pymongo.ASCENDING),("price",pymongo.ASCENDING),("mileage",pymongo.ASCENDING)],unique=True)
 
     def close_spider(self, spider):
         self.client.close()
 
     def process_item(self, item, spider):
-        self.db[self.collection_name].insert(dict(item))
+        try:
+            self.db[self.collection_name].insert_one(dict(item))
+        except pymongo.errors.DuplicateKeyError:
+            pass
         return item

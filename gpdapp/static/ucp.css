@@ -1,0 +1,68 @@
+h1 {
+	text-align: center;
+	margin-top: 50px;
+}
+
+body {
+  background: url(bmw-concept.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+	background-blend-mode: lighten;
+	background-color: rgba(255,255,255,0.5);
+	
+	font-family: Verdana, sans-serif;
+	margin: auto;
+}
+
+body li {
+	text-align: left;
+	list-style-type: none;
+	padding: 10px 40px 10px 20px;
+}
+
+p {
+	padding: 10px 0 0 40px ;
+}
+
+.menu {
+	background-color: darkgrey;
+	padding: 14px 16px;
+}
+
+.menu a {
+	display: inline;
+	color: antiquewhite;
+	text-align: center;
+	text-decoration: none;
+	padding: 14px 16px;
+	margin-left: 30px;
+}
+
+.menu a:hover {
+	background: #FFF2DF;
+	color: #A2836E;
+}
+
+.footer {
+	text-align: center;
+	position: absolute;
+	padding-bottom: 10px;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+.geoplot {
+	width: 100%;
+	height: auto;
+}
+
+.geoplot img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 100%;
+	height: auto; 
+}
+
