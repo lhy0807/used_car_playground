@@ -69,21 +69,27 @@ def make_line_fn():
   make = modelcode.find({"code":{"$in":usedcar.distinct("model")} }).distinct("make")
   year = modelcode.distinct("year")
 
-  total_num = []
+  count_dict = dict()
 
   for m in make:
-    num_each = []
+    count_each = []
     for y in year:
       # try fixing warning, replace .count() to count_document()
       # total = usedcar.count_document({"model":{"$in":modelcode.find({"make":m},{"year":y}).distinct("code")}})
-      total = usedcar.find({"model":{"$in":modelcode.find({"make":m},{"year":y}).distinct("code")}}).count()
-      num_each.append(total)
+      total = usedcar.find({"model":{"$in":modelcode.find({"make":m}).distinct("code")}, "year":y}).count()
+      count_each.append(total)
 
-    total_num.append(num_each)
+    # total_num.append(num_each)
+    count_dict[m] = count_each
 
   # print(total_in_year)
 
-  return [year, total_num]
+
+  print(make)
+  print(year)
+  print(count_dict)
+
+  return [year, count_dict]
 
 
 #init
@@ -91,6 +97,8 @@ model_num = 0
 model_table = list()
 pie_name = list()
 pie_porp = list()
+line_year = list()
+line_data = list()
 #start threads
 with ThreadPoolExecutor() as executor:
   model_num_thread = executor.submit(model_num_fn)
