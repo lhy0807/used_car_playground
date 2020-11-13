@@ -17,6 +17,12 @@ for (i = 0; i < pie_name.length; i++) {
     bgColor.push(getRandomColor());
 }
 
+var bgColorOpacity = [];
+for (i = 0; i < pie_name.length; i++) {
+    color = bgColor[i].split('#')[1];
+    
+}
+
 // Pie Chart Example
 var ctx = document.getElementById("myPieChart");
 var myPieChart = new Chart(ctx, {
@@ -28,6 +34,10 @@ var myPieChart = new Chart(ctx, {
             backgroundColor: bgColor,
             // hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
             hoverBorderColor: "rgba(234, 236, 244, 1)",
+            // hoverBackgroundColor: "rgba(234, 236, 244, 0.3)",
+            hoverBackgroundColor: bgColor,
+            hoverBorderWidth: 4, 
+            weight: 2,
         }],
     },
     options: {
