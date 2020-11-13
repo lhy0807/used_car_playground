@@ -49,6 +49,8 @@ def make_pie_fn():
   make = modelcode.find({"code":{"$in":usedcar.distinct("model")} }).distinct("make")
   num = []
   for i in make:
+    # try fixing warning, replace .count() to count_document()
+    # num.append(usedcar.count_document({"model":{"$in":modelcode.find({"make":i},{"code":1}).distinct("code") }}))
     num.append(usedcar.find({"model":{"$in":modelcode.find({"make":i},{"code":1}).distinct("code") }}).count())
   #porpotion
   porp = []
@@ -56,16 +58,55 @@ def make_pie_fn():
     porp.append(float(np.round((i/sum(num)*100), 2)))
   return [make, porp]
 
+# for line chart, create _attr_ vs year
+# options: 
+#   avgerage price vs year for specific model/makes
+
+def make_line_fn():
+  print("get line chart data")
+
+
+  make = modelcode.find({"code":{"$in":usedcar.distinct("model")} }).distinct("make")
+  year = modelcode.distinct("year")
+
+  count_dict = dict()
+
+  for m in make:
+    count_each = []
+    for y in year:
+      # try fixing warning, replace .count() to count_document()
+      # total = usedcar.count_document({"model":{"$in":modelcode.find({"make":m},{"year":y}).distinct("code")}})
+      total = usedcar.find({"model":{"$in":modelcode.find({"make":m}).distinct("code")}, "year":y}).count()
+      count_each.append(total)
+
+    # total_num.append(num_each)
+    count_dict[m] = count_each
+
+  # print(total_in_year)
+
+
+  print(make)
+  print(year)
+  print(count_dict)
+
+  return [year, count_dict]
+
+
 #init
 model_num = 0
 model_table = list()
 pie_name = list()
 pie_porp = list()
+line_year = list()
+line_data = list()
 #start threads
 with ThreadPoolExecutor() as executor:
   model_num_thread = executor.submit(model_num_fn)
   model_table_thread = executor.submit(model_table_fn)
   make_pie_thread = executor.submit(make_pie_fn)
+
+  # test line chat data
+  make_line_thread = executor.submit(make_line_fn)
 
 @app.route("/")
 def index(df = ny):
@@ -74,9 +115,12 @@ def index(df = ny):
   model_table = model_table_thread.result()
   pie_name = make_pie_thread.result()[0]
   pie_porp = make_pie_thread.result()[1]
+  line_year = make_line_thread.result()[0]
+  line_data = make_line_thread.result()[1]
 
   return render_template('index.html', model_num=model_num, model_table=model_table,
-   pie_name=json.dumps(pie_name), pie_porp=json.dumps(pie_porp), pie_name_no_json=pie_name )
+   pie_name=json.dumps(pie_name), pie_porp=json.dumps(pie_porp), pie_name_no_json=pie_name,
+   line_year=json.dumps(line_year), line_data=json.dumps(line_data), line_year_no_json=line_year )
 
 @csrf.exempt
 @app.route("/model", methods=['POST'])
@@ -161,6 +205,7 @@ def ajax(df = ny):
   #close figure
   plt.close(fig)
   return data
+  # return f"<img src='data:image/png;base64,{data}'/>"
 
 if __name__ == "__main__":
   app.run(host="0.0.0.0",port="5100")

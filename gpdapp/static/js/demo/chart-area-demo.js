@@ -27,27 +27,77 @@ function number_format(number, decimals, dec_point, thousands_sep) {
   return s.join(dec);
 }
 
+// Make multiple datasets
+function getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+var countSets = [];
+var countEach;
+var color;
+var make;
+for (make in line_data) {
+  color = getRandomColor();
+  countEach = {
+    label: make,
+    lineTension: 0.3,
+    // backgroundColor: "rgba(78, 115, 223, 0.05)",
+    // borderColor: "rgba(78, 115, 223, 1)",
+    borderColor: color,
+    pointRadius: 3,
+    // pointBackgroundColor: "rgba(78, 115, 223, 1)",
+    pointBackgroundColor: color,
+    // pointBorderColor: "rgba(78, 115, 223, 1)",
+    pointBorderColor: color,
+    pointHoverRadius: 5,
+    // pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+    pointHoverBackgroundColor: color,
+    // pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+    pointHoverBorderColor: color,
+    pointHitRadius: 10,
+    pointBorderWidth: 2,
+    // data: [500, 10000, 5000, 15000, 10000, 20000, 15000, 25000, 20000, 30000, 25000, 10000],
+    // data: line_data[1],
+    data: line_data[make],
+  };
+
+  countSets.push(countEach);
+}
+
+
+
+
 // Area Chart Example
 var ctx = document.getElementById("myAreaChart");
 var myLineChart = new Chart(ctx, {
   type: 'line',
   data: {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-    datasets: [{
-      label: "Earnings",
-      lineTension: 0.3,
-      backgroundColor: "rgba(78, 115, 223, 0.05)",
-      borderColor: "rgba(78, 115, 223, 1)",
-      pointRadius: 3,
-      pointBackgroundColor: "rgba(78, 115, 223, 1)",
-      pointBorderColor: "rgba(78, 115, 223, 1)",
-      pointHoverRadius: 3,
-      pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
-      pointHoverBorderColor: "rgba(78, 115, 223, 1)",
-      pointHitRadius: 10,
-      pointBorderWidth: 2,
-      data: [0, 10000, 5000, 15000, 10000, 20000, 15000, 25000, 20000, 30000, 25000, 40000],
-    }],
+    // labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    labels: line_year, 
+    // labels: ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021'],
+    // datasets: [{
+    //   label: "Earnings",
+    //   lineTension: 0.3,
+    //   backgroundColor: "rgba(78, 115, 223, 0.05)",
+    //   borderColor: "rgba(78, 115, 223, 1)",
+    //   pointRadius: 3,
+    //   pointBackgroundColor: "rgba(78, 115, 223, 1)",
+    //   pointBorderColor: "rgba(78, 115, 223, 1)",
+    //   pointHoverRadius: 3,
+    //   pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+    //   pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+    //   pointHitRadius: 10,
+    //   pointBorderWidth: 2,
+    //   // data: [500, 10000, 5000, 15000, 10000, 20000, 15000, 25000, 20000, 30000, 25000, 10000],
+    //   // data: line_data[1],
+    //   data: [6, 9, 12, 20, 44, 41, 74, 89, 97, 137, 140, 213, 268, 341, 299, 361, 498, 1339, 1050, 607, 204, 0],
+    // }],
+    datasets: countSets,
   },
   options: {
     maintainAspectRatio: false,
