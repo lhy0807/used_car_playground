@@ -1,7 +1,6 @@
 from random import random
 
 import geopandas as gpd
-from shapely.geometry import Point, Polygon
 import matplotlib.pyplot as plt
 import pandas as pd
 import json
@@ -11,17 +10,17 @@ from atlas_db import atlas
 import pymongo
 from tqdm import tqdm
 
-print("loading zipcode file...")
-usa = gpd.read_file('../zipcodes.shp')
-usa = usa.set_index('ZIP_CODE')
-ny = usa[usa['STATE'] == 'NY']
-ny.insert(3,'Quantity',np.nan)
-ny.insert(3,'Points',np.nan)
-ny.loc[10001,'Points'] = 1
-ny.loc[10001,'Quantity'] = 1
-ny.to_file("geojson/ny.geojson", driver='GeoJSON')
+# print("loading zipcode file...")
+# usa = gpd.read_file('../zipcodes.shp')
+# usa = usa.set_index('ZIP_CODE')
+# ny = usa[usa['STATE'] == 'NY']
+# ny.insert(3,'Quantity',np.nan)
+# ny.insert(3,'Points',np.nan)
+# ny.loc[10001,'Points'] = 1
+# ny.loc[10001,'Quantity'] = 1
+# ny.to_file("geojson/ny.geojson", driver='GeoJSON')
 
-print("finish loading zipcode file")
+# print("finish loading zipcode file")
 
 client = pymongo.MongoClient(atlas)
 db = client["usedcar"]
