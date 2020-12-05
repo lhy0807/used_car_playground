@@ -217,3 +217,67 @@ ui <- bootstrapPage(
   )
 )
 
+## Setup work directory;
+setwd("/srv/shiny-system/Data") 
+I <- 0
+for (i in 1:60) {
+  system("top -n 1 -b -u shiny > top.log")
+  dat <- readLines("top.log")
+  id <- grep("R *$", dat)
+  Names <- strsplit(gsub("^ +|%|\\+", "", dat[7]), " +")[[1]]
+  if (length(id) > 0) {
+    # 'top' data frame;
+    L <- strsplit(gsub("^ *", "", dat[id]), " +")
+    dat <- data.frame(matrix(unlist(L), ncol = 12, byrow = T))
+    names(dat) <- Names
+    dat <- data.frame(Time = Sys.time(), dat[, -ncol(dat)], usr = NA, app = NA)
+    dat$CPU <-as.numeric(as.character(dat$CPU))
+    dat$MEM <-as.numeric(as.character(dat$MEM))
+    # Check if connection number changed;
+    for (i in 1:length(dat$PID)) {
+      PID <- dat$PID[i]
+      system(paste("sudo netstat -p | grep", PID, "> netstat.log"))
+      system(paste("sudo netstat -p | grep", PID, ">> netstat.log2"))
+      system(paste("sudo lsof -p", PID, "| grep /srv > lsof.log"))
+      netstat <- readLines("netstat.log")
+      lsof <- readLines("lsof.log")
+      dat$usr[i] <- length(grep("ESTABLISHED", netstat) & grep("tcp", netstat))
+      dat$app[i] <- regmatches(lsof, regexec("srv/(.*)", lsof))[[1]][2]
+    }
+    dat <- dat[, c("app", "usr")]
+  } else {
+    dat <- data.frame(app = "app", usr = 0)
+  }
+  write.table(dat, file = "CPU.txt")
+}
+
+ui <- bootstrapPage(
+  
+  tags$head(
+    tags$link(href = "https://fonts.googleapis.com/css?family=Oswald", rel = "stylesheet"),
+    tags$style(type = "text/css", "html, body {width:100%;height:100%; font-family: Oswald, sans-serif;}"),
+    includeHTML("meta.html"),
+    tags$script(src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.16/iframeResizer.contentWindow.min.js",
+                type="text/javascript"),
+    tags$script('
+                $(document).ready(function () {
+                  navigator.geolocation.getCurrentPosition(onSuccess, onError);
+                
+                  function onError (err) {
+                    Shiny.onInputChange("geolocation", false);
+                  }
+                
+                  function onSuccess (position) {
+                    setTimeout(function () {
+                      var coords = position.coords;
+                      console.log(coords.latitude + ", " + coords.longitude);
+                      Shiny.onInputChange("geolocation", true);
+                      Shiny.onInputChange("lat", coords.latitude);
+                      Shiny.onInputChange("long", coords.longitude);
+                    }, 1100)
+                  }
+                });
+                ')
+  ),
+  
+  leafletOutput("map", width = "100%", height = "100%"),
