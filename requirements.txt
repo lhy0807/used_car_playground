@@ -195,7 +195,7 @@ PyWavelets @ file:///C:/ci/pywavelets_1601658407053/work
 pywin32==227
 pywin32-ctypes @ file:///C:/ci/pywin32-ctypes_1594392691209/work
 pywinpty==0.5.7
-PyYAML==5.3.1
+PyYAML==5.4
 pyzmq==19.0.2
 QDarkStyle==2.8.1
 QtAwesome @ file:///tmp/build/80754af9/qtawesome_1602272867890/work
