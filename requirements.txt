@@ -210,7 +210,7 @@ ruamel-yaml==0.15.87
 scikit-image==0.16.2
 scikit-learn @ file:///C:/ci/scikit-learn_1598376983131/work
 scipy @ file:///C:/ci/scipy_1597686737426/work
-Scrapy==2.1.0
+Scrapy==2.5.1
 Scrapy-UserAgents==0.0.1
 seaborn @ file:///tmp/build/80754af9/seaborn_1600553570093/work
 selenium @ file:///C:/ci/selenium_1594408106746/work
